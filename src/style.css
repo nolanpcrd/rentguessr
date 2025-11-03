@@ -512,27 +512,36 @@ button, input {
         font-size: 16px;
     }
 
+    .fullscreen-result {
+        padding: 20px;
+        justify-content: space-evenly;
+    }
+
     .result-cards {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 280px;
     }
 
     .result-card {
-        padding: 30px 40px;
+        padding: 20px 30px;
         border: 2px solid #000000;
     }
 
     .result-title {
-        font-size: 56px;
-        margin-bottom: 40px;
+        font-size: 48px;
+        margin-bottom: 20px;
     }
 
     .result-card-label {
-        font-size: 16px;
+        font-size: 14px;
+        margin-bottom: 8px;
     }
 
     .result-card-value {
-        font-size: 40px;
+        font-size: 32px;
     }
 
     .result-points {
@@ -542,5 +551,25 @@ button, input {
     .next-btn {
         padding: 15px 50px;
         font-size: 20px;
+    }
+
+    .result-points {
+        font-size: 48px;
+        margin: 10px 0;
+    }
+
+    .next-btn {
+        padding: 12px 40px;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .final-stats .final-score {
+        font-size: 80px;
+    }
+
+    .stats-label {
+        font-size: 24px;
+        margin: 10px 0 0 0;
     }
 }
