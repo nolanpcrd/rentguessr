@@ -484,7 +484,6 @@ button, input {
         bottom: 15px;
         width: calc(100% - 40px);
         padding: 12px 0;
-        flex-direction: column;
     }
 
     .carousel {
