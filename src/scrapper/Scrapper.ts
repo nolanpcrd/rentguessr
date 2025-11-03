@@ -1,17 +1,15 @@
 export default class Scrapper {
-    private baseUrlPart1: string;
-    private baseUrlPart2: string;
-    private maxPages: number;
+    private baseUrlTemplate: string;
+    private maxRents: number;
 
     constructor() {
-        this.baseUrlPart1 = "https://www.bienici.com/realEstateAds.json?filters=%7B%22size%22%3A24%2C%22from%22%3A2256%2C%22showAllModels%22%3Afalse%2C%22filterType%22%3A%22rent%22%2C%22propertyType%22%3A%5B%22flat%22%5D%2C%22page%22%3A";
-        this.baseUrlPart2 = "%2C%22sortBy%22%3A%22relevance%22%2C%22sortOrder%22%3A%22desc%22%2C%22onTheMarket%22%3A%5Btrue%5D%7D&extensionType=extendedIfNoResult&enableGoogleStructuredDataAggregates=true&leadingCount=1&access_token=wtNjWy5T0OB3ncDPixPSOvxmOJ5%2FTtNEY6%2FTpJRHfgE%3D%3A6907801121949100b4dea7b0&id=6907801121949100b4dea7b0";
-        this.maxPages = 1200;
+        this.maxRents = 2200;
+        this.baseUrlTemplate = "https://www.bienici.com/realEstateAds.json?filters=%7B%22size%22%3A60%2C%22from%22%3A{{FROM}}%2C%22showAllModels%22%3Afalse%2C%22filterType%22%3A%22rent%22%2C%22propertyType%22%3A%5B%22flat%22%5D%2C%22sortBy%22%3A%22relevance%22%2C%22sortOrder%22%3A%22desc%22%2C%22onTheMarket%22%3A%5Btrue%5D%7D&extensionType=extendedIfNoResult&enableGoogleStructuredDataAggregates=true&leadingCount=1&access_token=wtNjWy5T0OB3ncDPixPSOvxmOJ5%2FTtNEY6%2FTpJRHfgE%3D%3A6907801121949100b4dea7b0&id=6907801121949100b4dea7b0";
     }
 
     async getRandomRent() {
-        const randomPage = Math.floor(Math.random() * this.maxPages) + 1;
-        const url = `${this.baseUrlPart1}${randomPage}${this.baseUrlPart2}`;
+        const from = Math.floor(Math.random() * this.maxRents);
+        const url = this.baseUrlTemplate.replace("{{FROM}}", from.toString());
 
         try {
             const res = await fetch(url);
