@@ -513,8 +513,8 @@ button, input {
     }
 
     .fullscreen-result {
-        padding: 20px;
         justify-content: space-evenly;
+        padding: 20px 20px 60px;
     }
 
     .result-cards {
