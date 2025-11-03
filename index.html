@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="stylesheet" href="src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rentguessr</title>
+  </head>
+  <body>
+    <div class="game-header">
+      <div class="score-badge" id="score-display">0 Pts</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+        <div class="progress-number" id="progress-number">1</div>
+      </div>
+    </div>
+
+    <div class="game-container">
+      <div class="left-section">
+        <div id="carousel-container"></div>
+      </div>
+
+      <div class="right-section">
+        <div class="map-container" id="map-container"></div>
+        <div class="rent-info-badges">
+          <div class="info-badge" id="surface-badge">-</div>
+          <div class="info-badge" id="rooms-badge">-</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="form-container">
+      <div class="input-wrapper">
+        <input type="number" id="guess-input" placeholder="Votre estimation" />
+        <div class="euro-symbol">€</div>
+      </div>
+      <button id="submit-guess">Valider</button>
+    </div>
+
+    <div id="guess-result-screen"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
