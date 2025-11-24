@@ -60,6 +60,11 @@ export default class Game {
         await this.loadNextRound();
     }
 
+    private throwNewRent(rent?: number) {
+        const event = new CustomEvent("newRent", { detail: { rent } });
+        document.dispatchEvent(event);
+    }
+
     private async loadNextRound() {
         this.resultScreenContainer.innerHTML = "";
         this.resultScreenContainer.classList.remove("show");
@@ -85,6 +90,8 @@ export default class Game {
                 await this.loadNextRound();
                 return;
             }
+
+            this.throwNewRent(this.currentRent?.rent);
 
             this.carousel.createCarousel(this.currentRent.photos);
             this.map.createMap(this.currentRent.latitude, this.currentRent.longitude);

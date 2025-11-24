@@ -4,12 +4,20 @@ export default class ManageTwitchChat {
     private ws: WebSocket | null;
     private channel: string;
     private mean :Mean;
+    private currentRent : number;
 
     constructor(channel : string) {
         this.ws = null;
         this.channel = channel;
         this.connect();
         this.mean = new Mean();
+        this.currentRent = 0;
+        document.addEventListener("newRound", (event: any) => {
+            const detail = event.detail;
+            if (detail && detail.rent) {
+                this.currentRent = detail.rent;
+            }
+        });
     }
     public connect(): void {
         this.ws = new WebSocket(`https://hurt-trista-nolanpcrd-projects-610b0003.koyeb.app/`);
@@ -26,6 +34,13 @@ export default class ManageTwitchChat {
                 const value = parseFloat(msg.number);
                 if (isNaN(value)) {
                     return;
+                }
+                if (this.currentRent > 0) {
+                    const lowerBound = this.currentRent * 0.5;
+                    const upperBound = this.currentRent * 1.5;
+                    if (value < lowerBound || value > upperBound) {
+                        return;
+                    }
                 }
                 this.mean.addNumber(value);
             }
