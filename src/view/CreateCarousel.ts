@@ -3,6 +3,16 @@ export default class CreateCarousel {
     private currentIndex: number = 0;
     private images: string[] = [];
 
+    private zoomLevel: number = 1;
+    private panX: number = 0;
+    private panY: number = 0;
+    private isPanning: boolean = false;
+    private startX: number = 0;
+    private startY: number = 0;
+    private minZoom: number = 1;
+    private maxZoom: number = 4;
+    private zoomStep: number = 0.1;
+
     public constructor() {
         this.container = document.getElementById("carousel-container") as HTMLElement;
     }
@@ -84,6 +94,16 @@ export default class CreateCarousel {
                 this.goToSlide(index);
             });
         });
+
+        const imagesContainer = this.container.querySelector('.carousel-images') as HTMLElement;
+        if (imagesContainer) {
+            imagesContainer.addEventListener('wheel', (e) => this.handleWheel(e));
+
+            imagesContainer.addEventListener('mousedown', (e) => this.handleMouseDown(e));
+            imagesContainer.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+            imagesContainer.addEventListener('mouseup', () => this.handleMouseUp());
+            imagesContainer.addEventListener('mouseleave', () => this.handleMouseUp());
+        }
     }
 
     public nextSlide(): void {
@@ -113,6 +133,85 @@ export default class CreateCarousel {
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === this.currentIndex);
         });
+
+        this.resetZoom();
+    }
+
+    private handleWheel(e: WheelEvent): void {
+        e.preventDefault();
+
+        const delta = e.deltaY > 0 ? -this.zoomStep : this.zoomStep;
+        const newZoom = Math.max(this.minZoom, Math.min(this.maxZoom, this.zoomLevel + delta));
+
+        if (newZoom !== this.zoomLevel) {
+            this.zoomLevel = newZoom;
+
+            if (this.zoomLevel === this.minZoom) {
+                this.panX = 0;
+                this.panY = 0;
+            }
+
+            this.applyZoom();
+        }
+    }
+
+    private handleMouseDown(e: MouseEvent): void {
+        if (this.zoomLevel > 1) {
+            this.isPanning = true;
+            this.startX = e.clientX - this.panX;
+            this.startY = e.clientY - this.panY;
+
+            const imagesContainer = this.container.querySelector('.carousel-images') as HTMLElement;
+            if (imagesContainer) {
+                imagesContainer.style.cursor = 'grabbing';
+            }
+        }
+    }
+
+    private handleMouseMove(e: MouseEvent): void {
+        if (this.isPanning) {
+            e.preventDefault();
+            this.panX = e.clientX - this.startX;
+            this.panY = e.clientY - this.startY;
+            this.applyZoom();
+        } else if (this.zoomLevel > 1) {
+            const imagesContainer = this.container.querySelector('.carousel-images') as HTMLElement;
+            if (imagesContainer) {
+                imagesContainer.style.cursor = 'grab';
+            }
+        }
+    }
+
+    private handleMouseUp(): void {
+        this.isPanning = false;
+
+        const imagesContainer = this.container.querySelector('.carousel-images') as HTMLElement;
+        if (imagesContainer && this.zoomLevel > 1) {
+            imagesContainer.style.cursor = 'grab';
+        } else if (imagesContainer) {
+            imagesContainer.style.cursor = 'default';
+        }
+    }
+
+    private applyZoom(): void {
+        const activeItem = this.container.querySelector('.carousel-item.active') as HTMLElement;
+        if (activeItem) {
+            activeItem.style.transform = `scale(${this.zoomLevel}) translate(${this.panX / this.zoomLevel}px, ${this.panY / this.zoomLevel}px)`;
+            activeItem.style.transition = this.isPanning ? 'none' : 'transform 0.2s ease-out';
+        }
+
+        const imagesContainer = this.container.querySelector('.carousel-images') as HTMLElement;
+        if (imagesContainer) {
+            imagesContainer.style.overflow = this.zoomLevel > 1 ? 'hidden' : 'hidden';
+        }
+    }
+
+    private resetZoom(): void {
+        this.zoomLevel = 1;
+        this.panX = 0;
+        this.panY = 0;
+        this.isPanning = false;
+        this.applyZoom();
     }
 
     public destroy(): void {

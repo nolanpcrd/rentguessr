@@ -169,6 +169,8 @@ button, input {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: default;
+    user-select: none;
 }
 
 .carousel-item {
@@ -182,6 +184,8 @@ button, input {
     display: flex;
     align-items: center;
     justify-content: center;
+    transform-origin: center center;
+    will-change: transform;
 }
 
 .carousel-item.active {
