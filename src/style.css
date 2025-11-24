@@ -20,7 +20,7 @@ html, body {
 }
 
 body {
-    background-image: url('/yellow-bg.png');
+    background-image: url('/yellow-bg.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -338,15 +338,15 @@ button, input {
 }
 
 .fullscreen-result.excellent {
-    background-image: url('/green-bg.png');
+    background-image: url('/green-bg.svg');
 }
 
 .fullscreen-result.good {
-    background-image: url('/yellow-bg.png');
+    background-image: url('/yellow-bg.svg');
 }
 
 .fullscreen-result.bad {
-    background-image: url('/red-bg.png');
+    background-image: url('/red-bg.svg');
 }
 
 .result-title {
@@ -408,7 +408,7 @@ button, input {
 }
 
 .fullscreen-result.game-over {
-    background-image: url('/green-bg.png');
+    background-image: url('/green-bg.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
