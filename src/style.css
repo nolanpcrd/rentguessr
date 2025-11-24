@@ -11,6 +11,39 @@
     box-sizing: border-box;
 }
 
+.twitch-selector-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/yellow-bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 9999;
+}
+
+.twitch-selector {
+    position: fixed;
+    z-index: 150;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#twitch-name-label {
+    font-size: 1.3em;
+    text-align: center;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -24,12 +57,12 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'Lilita One', cursive;
+    font-family: 'Lilita One', sans-serif;
     font-weight: 900;
 }
 
 button, input {
-    font-family: 'Lilita One', cursive;
+    font-family: 'Lilita One', sans-serif;
 }
 
 .game-header {
@@ -44,7 +77,7 @@ button, input {
     z-index: 100;
 }
 
-.score-badge {
+.score-badge, .chat-mean {
     background-color: #FD5A46;
     color: white;
     padding: 10px 40px;
@@ -53,6 +86,10 @@ button, input {
     font-weight: 900;
     border: 2px solid #000000;
     justify-self: start;
+}
+
+.chat-mean {
+    justify-self: end;
 }
 
 .progress-bar-container {
@@ -251,7 +288,7 @@ button, input {
     align-items: center;
 }
 
-#guess-input {
+#guess-input, #twitch-name {
     flex: 1;
     padding: 15px 50px 15px 15px;
     font-size: 18px;
@@ -261,12 +298,12 @@ button, input {
     transition: border-color 0.3s;
 }
 
-#guess-input:focus {
+#guess-input:focus, #twitch-name:focus {
     outline: none;
     border-color: #058CD7;
 }
 
-#guess-input:disabled {
+#guess-input:disabled, #twitch-name:disabled {
     background-color: #f5f5f5;
     cursor: not-allowed;
 }
@@ -287,7 +324,7 @@ button, input {
     justify-content: center;
 }
 
-#submit-guess {
+#submit-guess, #load-twitch {
     padding: 15px 40px;
     font-size: 18px;
     font-weight: 900;
@@ -301,11 +338,11 @@ button, input {
 }
 
 
-#submit-guess:active:not(:disabled) {
+#submit-guess:active:not(:disabled), #load-twitch:active:not(:disabled) {
     transform: translateY(0);
 }
 
-#submit-guess:disabled {
+#submit-guess:disabled, #load-twitch:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
@@ -463,7 +500,7 @@ button, input {
         gap: 10px;
     }
 
-    .score-badge {
+    .score-badge, .chat-mean {
         padding: 10px 20px;
         font-size: 16px;
         justify-self: center;
@@ -509,12 +546,12 @@ button, input {
         border: 2px solid #000000;
     }
 
-    #guess-input {
+    #guess-input, #twitch-name {
         font-size: 16px;
         border: 2px solid #000000;
     }
 
-    #submit-guess {
+    #submit-guess , #load-twitch {
         padding: 12px 30px;
         font-size: 16px;
     }
