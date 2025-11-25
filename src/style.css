@@ -620,4 +620,70 @@ button, input {
         font-size: 24px;
         margin: 10px 0 0 0;
     }
+
+    .message-popup-container {
+        top: 10px;
+        max-width: calc(100% - 40px);
+    }
+
+    .message-popup {
+        min-width: 300px;
+    }
+
+    .message-popup-content {
+        padding: 10px 10px 10px 0;
+        font-size: 14px;
+    }
 }
+
+.message-popup-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 90%;
+    z-index: 300;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+.message-popup {
+    background-color: white;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    padding: 0 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 400px;
+}
+
+.message-popup-content {
+    padding: 12px 15px 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.message-popup-close:hover {
+    transform: scale(1.1);
+}
+
+.message-popup-close:active {
+    transform: scale(0.95);
+}
+

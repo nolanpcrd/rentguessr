@@ -1,10 +1,12 @@
 import Mean from "./Mean.ts";
+import  CreateMessagePopup from "../view/CreateMessagePopup.ts";
 
 export default class ManageTwitchChat {
     private ws: WebSocket | null;
     private channel: string;
     private mean :Mean;
     private currentRent : number;
+    private createMessagePopup: CreateMessagePopup;
 
     constructor(channel : string) {
         this.ws = null;
@@ -18,6 +20,7 @@ export default class ManageTwitchChat {
                 this.currentRent = detail.rent;
             }
         });
+        this.createMessagePopup = new CreateMessagePopup();
     }
     public connect(): void {
         this.ws = new WebSocket(`https://hurt-trista-nolanpcrd-projects-610b0003.koyeb.app/`);
@@ -43,6 +46,8 @@ export default class ManageTwitchChat {
                     }
                 }
                 this.mean.addNumber(value);
+            } else if (msg.type === "admin_message") {
+                this.createMessagePopup.showMessage(msg.message);
             }
         }
     }
