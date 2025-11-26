@@ -1,6 +1,7 @@
 import Scrapper from "../scrapper/Scrapper.ts";
 import CreateCarousel from "../view/CreateCarousel.ts";
 import CreateMap from "../view/CreateMap.ts";
+import { shareResult, shareOnTwitter } from "../utils/share.ts";
 
 export default class Game {
     private scrapper: Scrapper;
@@ -264,11 +265,25 @@ export default class Game {
                     <p class="final-score">${this.score}</p>
                     <p class="stats-label">Points au total (sur ${maxPossiblePoints})</p>
                 </div>
+                <div class="share-buttons">
+                    <button id="share-twitter-btn" class="share-btn twitter">Partager sur Twitter</button>
+                    <button id="share-image-btn" class="share-btn instagram">Image de résultat</button>
+                </div>
                 <button id="restart-btn" class="next-btn">Rejouer</button>
             </div>
         `;
 
         this.resultScreenContainer.classList.add("show");
+
+        const shareTwitterBtn = document.getElementById("share-twitter-btn") as HTMLButtonElement;
+        shareTwitterBtn.addEventListener("click", () => {
+            shareOnTwitter(this.score, maxPossiblePoints);
+        });
+
+        const shareImageBtn = document.getElementById("share-image-btn") as HTMLButtonElement;
+        shareImageBtn.addEventListener("click", () => {
+            shareResult(this.score, maxPossiblePoints);
+        });
 
         const restartBtn = document.getElementById("restart-btn") as HTMLButtonElement;
         restartBtn.addEventListener("click", () => {
