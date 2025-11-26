@@ -49,6 +49,24 @@
     <button id="submit-guess">Valider</button>
 </div>
 
+
+<div id="settings-overlay">
+    <div id="settings-container">
+        <div id="settings-header">
+            <h2>Paramètres</h2>
+            <button id="close-settings">X</button>
+        </div>
+        <label for="price-range">Plage de prix (€) :</label>
+        <input type="text" id="price-range" placeholder="ex : 500-2000" />
+        <label for="number-of-rounds">Nombre de manches :</label>
+        <input type="number" id="number-of-rounds" min="1" max="20" value="5" />
+        <button id="reset-settings" class="reset-button">Réinitialiser les paramètres</button>
+    </div>
+</div>
+
+<button id="settings-button"><img src="public/settings.png" alt="paramètres"/>️</button>
+<a id="insta-button" target="_blank" href="https://instagram.com/nolanpcrd"><img src="public/insta.png" alt="insta"/>️</a>
+
 <div id="guess-result-screen"></div>
 <script type="module" src="/src/main.ts"></script>
 <script type="module" src="/src/twitch/twitch.ts"></script>

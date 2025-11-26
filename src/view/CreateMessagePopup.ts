@@ -14,6 +14,7 @@ export default class CreateMessagePopup {
 
     public showMessage(message: string): void {
         if (!this.popupContainer) return;
+        message = message.replace("_", " ");
 
         this.popupContainer.innerHTML = `
             <div class="message-popup">

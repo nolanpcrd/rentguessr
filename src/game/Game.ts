@@ -20,6 +20,7 @@ export default class Game {
     private roomsBadge: HTMLElement;
     private gameContainer: HTMLElement;
     private formContainer: HTMLElement;
+    private previousPriceSettings: { minPrice?: number, maxPrice?: number } = {};
 
     constructor() {
         this.scrapper = new Scrapper();
@@ -38,6 +39,69 @@ export default class Game {
         this.roomsBadge = document.getElementById("rooms-badge") as HTMLElement;
         this.gameContainer = document.querySelector(".game-container") as HTMLElement;
         this.formContainer = document.getElementById("form-container") as HTMLElement;
+
+        this.listenToSettings();
+    }
+
+    private listenToSettings(): void {
+        document.addEventListener('settingsChanged', ((event: CustomEvent) => {
+            const { settings } = event.detail;
+
+            const priceChanged =
+                this.previousPriceSettings.minPrice !== settings.minPrice ||
+                this.previousPriceSettings.maxPrice !== settings.maxPrice;
+
+            if (priceChanged && this.currentRent) {
+                this.reloadCurrentRound();
+            }
+
+            this.previousPriceSettings = {
+                minPrice: settings.minPrice,
+                maxPrice: settings.maxPrice
+            };
+
+            if (settings.numberOfRounds !== undefined) {
+                this.maxRounds = settings.numberOfRounds;
+                this.updateProgressBar();
+            }
+        }) as EventListener);
+    }
+
+    private async reloadCurrentRound() {
+        this.guessInput.value = "";
+        this.guessInput.disabled = false;
+        this.submitButton.disabled = false;
+
+        try {
+            this.currentRent = await this.scrapper.getRandomRent();
+
+            if (this.currentRent.error) {
+                console.error(this.currentRent.error);
+                await this.reloadCurrentRound();
+                return;
+            }
+
+            this.throwNewRent(this.currentRent?.rent);
+
+            this.carousel.createCarousel(this.currentRent.photos);
+            this.map.createMap(this.currentRent.latitude, this.currentRent.longitude);
+            this.updateUI();
+        } catch (err) {
+            console.error("Erreur:", err);
+            await this.reloadCurrentRound();
+        }
+    }
+
+    private updateProgressBar(): void {
+        const progressPercent = ((this.currentRentIndex + 1) / this.maxRounds) * 100;
+        this.progressBar.style.width = `${progressPercent}%`;
+        this.progressNumber.textContent = `${this.currentRentIndex + 1}`;
+        if (progressPercent === 100) {
+            this.progressNumber.style.left = `auto`;
+            this.progressNumber.style.right = `-25px`;
+        } else {
+            this.progressNumber.style.left = `calc(${progressPercent}% - 20px)`;
+        }
     }
 
     public async start() {
@@ -57,6 +121,7 @@ export default class Game {
             if (e.key === "Enter") this.handleGuess();
         });
 
+        await this.scrapper.initialize();
         await this.loadNextRound();
     }
 
@@ -104,17 +169,7 @@ export default class Game {
 
     private updateUI() {
         this.scoreDisplay.textContent = `${this.score} Pts`;
-
-        const progressPercent = ((this.currentRentIndex + 1) / this.maxRounds) * 100;
-        this.progressBar.style.width = `${progressPercent}%`;
-        this.progressNumber.textContent = `${this.currentRentIndex + 1}`;
-        if (progressPercent === 100) {
-            this.progressNumber.style.left = `auto`;
-            this.progressNumber.style.right = `-25px`;
-        } else {
-            this.progressNumber.style.left = `calc(${progressPercent}% - 20px)`;
-        }
-
+        this.updateProgressBar();
         this.surfaceBadge.textContent = `${this.currentRent.surface || "?"}m²`;
         this.roomsBadge.textContent = `${this.currentRent.rooms || "?"} pièces`;
     }
@@ -200,12 +255,14 @@ export default class Game {
         const gameHeader = document.querySelector(".game-header") as HTMLElement;
         if (gameHeader) gameHeader.style.display = "none";
 
+        const maxPossiblePoints = this.maxRounds * 10000;
+
         this.resultScreenContainer.innerHTML = `
             <div class="fullscreen-result game-over">
                 <h1 class="result-title">Partie terminée !</h1>
                 <div class="final-stats">
                     <p class="final-score">${this.score}</p>
-                    <p class="stats-label">Points au total</p>
+                    <p class="stats-label">Points au total (sur ${maxPossiblePoints})</p>
                 </div>
                 <button id="restart-btn" class="next-btn">Rejouer</button>
             </div>

@@ -474,6 +474,216 @@ button, input {
     font-weight: 900;
 }
 
+
+.message-popup-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 90%;
+    z-index: 300;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+.message-popup {
+    background-color: white;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    padding: 0 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 400px;
+}
+
+.message-popup-content {
+    padding: 12px 15px 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.message-popup-close:hover {
+    transform: scale(1.1);
+}
+
+.message-popup-close:active {
+    transform: scale(0.95);
+}
+
+#insta-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    height: 50px;
+    opacity: 30%;
+    z-index: 999;
+    transition-duration: 0.2s;
+}
+
+#insta-button:hover {
+    opacity: 60%;
+}
+
+#insta-button img {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+#settings-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    opacity: 30%;
+    background: transparent;
+    border: none;
+    transition-duration: 0.2s;
+    z-index: 999;
+}
+
+#settings-button:hover {
+    opacity: 60%;
+}
+
+#settings-button img {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+#settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    display: none;
+}
+
+#settings-container {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#settings-header {
+    font-size: 20px;
+    color: white;
+    border-top-left-radius: 17px;
+    border-top-right-radius: 17px;
+    width: 100%;
+    padding: 16px;
+    font-weight: 900;
+    background-color: #FD5A46;
+    display: flex;
+}
+
+#settings-header h2 {
+    margin: 0;
+}
+
+#close-settings {
+    margin-left: auto;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    transition: transform 0.2s;
+}
+
+#settings-container label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    width: 80%;
+    text-align: left;
+}
+
+#settings-container input[type="text"],
+#settings-container input[type="number"],
+#settings-container select {
+    width: 80%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    font-weight: 700;
+    background-color: white;
+    transition: border-color 0.3s;
+}
+
+#settings-container input[type="text"]:focus,
+#settings-container input[type="number"]:focus,
+#settings-container select:focus {
+    outline: none;
+    border-color: #058CD7;
+}
+
+#settings-container select {
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-family: 'Lilita One', sans-serif;
+}
+
+#settings-container input[type="text"]::placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+.reset-button {
+    width: 80%;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 900;
+    background-color: #FD5A46;
+    color: white;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 30px;
+}
+
+.reset-button:hover {
+    background-color: #e54936;
+}
+
+.reset-button:active {
+    transform: scale(0.98);
+}
+
 @media (max-width: 1000px) {
     .game-container {
         flex-direction: column;
@@ -493,6 +703,10 @@ button, input {
     .map-container {
         flex: 1;
         min-height: 200px;
+    }
+
+    #insta-button {
+        display: none;
     }
 }
 
@@ -634,56 +848,11 @@ button, input {
         padding: 10px 10px 10px 0;
         font-size: 14px;
     }
-}
 
-.message-popup-container {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    max-width: 90%;
-    z-index: 300;
-    animation: slideDown 0.4s ease;
-}
-
-@keyframes slideDown {
-    from {
-        transform: translate(-50%, -100%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, 0);
-        opacity: 1;
+    #settings-button {
+        top: 10px;
+        left: 10px;
+        bottom: auto;
+        right: auto;
     }
 }
-
-.message-popup {
-    background-color: white;
-    border: 2px solid #000000;
-    border-radius: 15px;
-    padding: 0 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    min-width: 400px;
-}
-
-.message-popup-content {
-    padding: 12px 15px 12px 0;
-    font-size: 16px;
-    font-weight: 700;
-    color: #000;
-    line-height: 1.4;
-    flex: 1;
-}
-
-.message-popup-close:hover {
-    transform: scale(1.1);
-}
-
-.message-popup-close:active {
-    transform: scale(0.95);
-}
-
