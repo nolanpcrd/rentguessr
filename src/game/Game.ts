@@ -1,10 +1,12 @@
-import Scrapper from "../scrapper/Scrapper.ts";
+import ScrapperAPI from "../scrapper/ScrapperAPI.ts";
 import CreateCarousel from "../view/CreateCarousel.ts";
 import CreateMap from "../view/CreateMap.ts";
 import { shareResult, shareOnTwitter } from "../utils/share.ts";
+import ScrapperPlaylist from "../scrapper/ScrapperPlaylist.ts";
+import type IScrapper from "../scrapper/IScrapper.ts";
 
 export default class Game {
-    private scrapper: Scrapper;
+    private scrapper: IScrapper;
     private carousel: CreateCarousel;
     private map: CreateMap;
     private score: number;
@@ -22,9 +24,16 @@ export default class Game {
     private gameContainer: HTMLElement;
     private formContainer: HTMLElement;
     private previousPriceSettings: { minPrice?: number, maxPrice?: number } = {};
+    private isPlaylistMode: boolean = false;
 
-    constructor() {
-        this.scrapper = new Scrapper();
+    constructor(playlistId: string = "") {
+        if (playlistId === "") {
+            this.scrapper = new ScrapperAPI();
+            this.isPlaylistMode = false;
+        } else {
+            this.scrapper = new ScrapperPlaylist(playlistId);
+            this.isPlaylistMode = true;
+        }
         this.carousel = new CreateCarousel();
         this.map = new CreateMap();
         this.score = 0;
@@ -61,7 +70,7 @@ export default class Game {
                 maxPrice: settings.maxPrice
             };
 
-            if (settings.numberOfRounds !== undefined) {
+            if (settings.numberOfRounds !== undefined && this.scrapper.getRentCount() === undefined) {
                 this.maxRounds = settings.numberOfRounds;
                 this.updateProgressBar();
             }
@@ -123,6 +132,13 @@ export default class Game {
         });
 
         await this.scrapper.initialize();
+
+        const rentCount = this.scrapper.getRentCount();
+        if (rentCount !== undefined) {
+            this.maxRounds = rentCount;
+            this.updateProgressBar();
+        }
+
         await this.loadNextRound();
     }
 
@@ -269,7 +285,7 @@ export default class Game {
                     <button id="share-twitter-btn" class="share-btn twitter">Partager sur Twitter</button>
                     <button id="share-image-btn" class="share-btn instagram">Image de résultat</button>
                 </div>
-                <button id="restart-btn" class="next-btn">Rejouer</button>
+                <button id="restart-btn" class="next-btn">${this.isPlaylistMode ? 'Retour aux playlists' : 'Rejouer'}</button>
             </div>
         `;
 
@@ -287,7 +303,11 @@ export default class Game {
 
         const restartBtn = document.getElementById("restart-btn") as HTMLButtonElement;
         restartBtn.addEventListener("click", () => {
-            this.start();
+            if (this.isPlaylistMode) {
+                window.location.hash = "#playlists";
+            } else {
+                this.start();
+            }
         });
     }
 }

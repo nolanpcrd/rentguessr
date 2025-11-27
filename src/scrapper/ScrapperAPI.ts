@@ -1,4 +1,6 @@
-export default class Scrapper {
+import type IScrapper from "./IScrapper.ts";
+
+export default class ScrapperAPI implements IScrapper {
     private baseUrlTemplate: string;
     private maxRents: number;
     private maxRentsFilter: number;
@@ -82,7 +84,7 @@ export default class Scrapper {
         document.dispatchEvent(event);
     }
 
-    async getRandomRent() {
+    async getRandomRent(): Promise<any> {
         this.throwNewRoundEvent();
         const from = Math.floor(Math.random() * this.maxRentsFilter);
         const url = this.getUrl(from);
@@ -109,5 +111,8 @@ export default class Scrapper {
         } catch (err) {
             return { error: "Erreur récup annonces", details: err };
         }
+    }
+    public getRentCount(): number | undefined {
+        return undefined;
     }
 }

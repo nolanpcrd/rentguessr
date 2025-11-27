@@ -1,0 +1,304 @@
+#login-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    width: 100%;
+}
+
+#login-view a {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.2em;
+    border: 2px solid #000;
+}
+
+#login-view #back-button {
+    position: absolute;
+    left: 10%;
+    top: 5%;
+}
+
+#login-view .form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 400px;
+    max-width: 90%;
+    transition: background-color 0.3s ease;
+    border: 2px solid #000;
+    box-shadow: -4px 4px 0 black;
+}
+
+#login-view .toggle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #000;
+    overflow: hidden;
+}
+
+#login-view #signIn,
+#login-view #signUp {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    flex: 1;
+    padding: 15px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+    font-weight: 900;
+    font-family: 'Lilita One', sans-serif;
+}
+
+#login-view .toggle-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #058CD7;
+    border: none;
+    border-radius: 13px;
+    transition: left 0.3s ease, background-color 0.3s ease;
+    z-index: 0;
+    box-sizing: border-box;
+}
+
+#login-view #signIn {
+    color: white;
+}
+
+#login-view #signUp {
+    color: black;
+}
+
+#login-view form {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lilita One', sans-serif;
+    gap: 10px;
+}
+
+#login-view label {
+    color: black;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+#login-view input {
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    background-color: white;
+    font-size: 16px;
+    font-family: 'Lilita One', sans-serif;
+    color: #000;
+    font-weight: 700;
+}
+
+#login-view input:focus {
+    outline: none;
+    border-color: #058CD7;
+}
+
+#login-view #submitBtn {
+    color: white;
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    background-color: #058CD7;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.1s;
+    font-family: 'Lilita One', sans-serif;
+    font-weight: 900;
+}
+
+#login-view #submitBtn:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+#login-view #username,
+#login-view #usernameLabel {
+    display: none;
+}
+
+#login-view input::placeholder {
+    font-size: 15px;
+    color: #999;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    #login-view .form-container {
+        width: 90%;
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 2559px) {
+    #login-view .form-container {
+        width: 650px;
+        padding: 50px;
+        border-width: 3px;
+        border-radius: 25px;
+        box-shadow: -6px 6px 0 black;
+    }
+
+    #login-view a {
+        padding: 15px 30px;
+        font-size: 1.5em;
+        border-width: 3px;
+        border-radius: 25px;
+    }
+
+    #login-view .toggle {
+        border-width: 3px;
+        border-radius: 25px;
+    }
+
+    #login-view #signIn,
+    #login-view #signUp {
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    #login-view .toggle-btn {
+        border-radius: 22px;
+    }
+
+    #login-view label {
+        font-size: 1.5em;
+    }
+
+    #login-view input {
+        padding: 20px;
+        font-size: 20px;
+        border-width: 3px;
+        border-radius: 25px;
+    }
+
+    #login-view #submitBtn {
+        padding: 20px;
+        font-size: 26px;
+        border-width: 3px;
+        border-radius: 25px;
+    }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) {
+    #login-view .form-container {
+        width: 900px;
+        padding: 70px;
+        border-width: 4px;
+        border-radius: 35px;
+        box-shadow: -10px 10px 0 black;
+    }
+
+    #login-view a {
+        padding: 24px 48px;
+        font-size: 2em;
+        border-width: 4px;
+        border-radius: 35px;
+    }
+
+    #login-view .toggle {
+        border-width: 4px;
+        border-radius: 35px;
+    }
+
+    #login-view #signIn,
+    #login-view #signUp {
+        font-size: 28px;
+        padding: 28px;
+    }
+
+    #login-view .toggle-btn {
+        border-radius: 31px;
+    }
+
+    #login-view label {
+        font-size: 2em;
+    }
+
+    #login-view input {
+        padding: 28px;
+        font-size: 28px;
+        border-width: 4px;
+        border-radius: 35px;
+    }
+
+    #login-view #submitBtn {
+        padding: 28px;
+        font-size: 38px;
+        border-width: 4px;
+        border-radius: 35px;
+    }
+}
+
+@media (min-width: 3840px) {
+    #login-view .form-container {
+        width: 1200px;
+        padding: 90px;
+        border-width: 6px;
+        border-radius: 50px;
+        box-shadow: -12px 12px 0 black;
+    }
+
+    #login-view a {
+        padding: 32px 64px;
+        font-size: 2.6em;
+        border-width: 6px;
+        border-radius: 50px;
+    }
+
+    #login-view .toggle {
+        border-width: 6px;
+        border-radius: 50px;
+    }
+
+    #login-view #signIn,
+    #login-view #signUp {
+        font-size: 36px;
+        padding: 35px;
+    }
+
+    #login-view .toggle-btn {
+        border-radius: 44px;
+    }
+
+    #login-view label {
+        font-size: 2.6em;
+    }
+
+    #login-view input {
+        padding: 35px;
+        font-size: 36px;
+        border-width: 6px;
+        border-radius: 50px;
+    }
+
+    #login-view #submitBtn {
+        padding: 35px;
+        font-size: 48px;
+        border-width: 6px;
+        border-radius: 50px;
+    }
+}

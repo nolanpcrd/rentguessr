@@ -81,19 +81,18 @@ export default class SettingsManager {
         return { minPrice: undefined, maxPrice: undefined };
     }
 
-    private handlePriceRangeChange(): void {
+    private validateSettings(): void {
         const { minPrice, maxPrice } = this.parsePriceRange(this.priceRangeInput.value);
         this.settings.minPrice = minPrice;
         this.settings.maxPrice = maxPrice;
-        this.saveSettings();
-    }
 
-    private handleNumberOfRoundsChange(): void {
-        const value = parseInt(this.numberOfRoundsInput.value);
-        if (!isNaN(value) && value > 0) {
-            this.settings.numberOfRounds = value;
-            this.saveSettings();
+        const rounds = parseInt(this.numberOfRoundsInput.value);
+        if (!isNaN(rounds) && rounds > 0) {
+            this.settings.numberOfRounds = rounds;
         }
+
+        this.saveSettings();
+        this.closeSettings();
     }
 
     private resetSettings(): void {
@@ -111,18 +110,8 @@ export default class SettingsManager {
             this.openSettings();
         });
 
-        this.priceRangeInput.addEventListener('blur', () => {
-            this.handlePriceRangeChange();
-        });
-
-        this.priceRangeInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.handlePriceRangeChange();
-            }
-        });
-
-        this.numberOfRoundsInput.addEventListener('change', () => {
-            this.handleNumberOfRoundsChange();
+        document.getElementById('validate-settings')?.addEventListener('click', () => {
+            this.validateSettings();
         });
 
         this.resetButton.addEventListener('click', () => {
@@ -131,6 +120,7 @@ export default class SettingsManager {
     }
 
     public openSettings(): void {
+        this.applySettingsToUI();
         const settingsOverlay = document.getElementById('settings-overlay');
         if (settingsOverlay) {
             settingsOverlay.style.display = 'block';
