@@ -309,6 +309,7 @@ input[type="text"]:focus {
     .playlist-browser-container {
         width: 95%;
         padding: 20px;
+        margin-bottom: 50px;
     }
 
     .add-rent-form {
