@@ -8,7 +8,7 @@ export default class Scrapper {
         this.maxRents = 2200;
         this.maxRentsFilter = 2200;
         this.baseUrlTemplate =
-            "https://www.bienici.com/realEstateAds.json?filters={{FILTERS}}&extensionType=extendedIfNoResult&enableGoogleStructuredDataAggregates=true&leadingCount=1&access_token=wtNjWy5T0OB3ncDPixPSOvxmOJ5%2FTtNEY6%2FTpJRHfgE%3D%3A6907801121949100b4dea7b0&id=6907801121949100b4dea7b0";
+            "https://www.bienici.com/realEstateAds.json?filters={{FILTERS}}&extensionType=extendedIfNoResult&enableGoogleStructuredDataAggregates=true&leadingCount=1";
 
         this.filters = {
             size: 1,
