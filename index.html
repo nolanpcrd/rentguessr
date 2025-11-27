@@ -1,64 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="stylesheet" href="src/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Devinez le loyer mensuel des appartements en France avec rentguessr !" />
-    <meta name="keywords" content="rentguessr, loyer, deviner, france, appartements, jeu, immobilier" />
-    <title>rentguessr</title>
-  </head>
-  <img src="/wankuls.png" class="wankil-logo" alt="Wankil Studio Logo" />
-  <body>
-    <div class="game-header">
-      <div class="score-badge" id="score-display">0 Pts</div>
-      <div class="progress-bar-container">
-        <div class="progress-bar" id="progress-bar"></div>
-        <div class="progress-number" id="progress-number">1</div>
-      </div>
-    </div>
 
-    <div class="game-container">
-      <div class="left-section">
-        <div id="carousel-container"></div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="stylesheet" href="src/css/style.css" />
+  <link rel="stylesheet" href="src/css/login.css" />
+  <link rel="stylesheet" href="src/css/settings.css" />
+  <link rel="stylesheet" href="src/css/playlists.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Devinez le loyer mensuel des appartements en France avec rentguessr !" />
+  <meta name="keywords" content="rentguessr, loyer, deviner, france, appartements, jeu, immobilier" />
+  <title>rentguessr</title>
+</head>
 
-      <div class="right-section">
-        <div class="map-container" id="map-container"></div>
-        <div class="rent-info-badges">
-          <div class="info-badge" id="surface-badge">-</div>
-          <div class="info-badge" id="rooms-badge">-</div>
-        </div>
-      </div>
-    </div>
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
 
-    <div id="form-container">
-      <div class="input-wrapper">
-        <input type="number" id="guess-input" placeholder="Votre estimation" />
-        <div class="euro-symbol">€</div>
-      </div>
-      <button id="submit-guess">Valider</button>
-    </div>
-
-    <div id="settings-overlay">
-      <div id="settings-container">
-        <div id="settings-header">
-            <h2>Paramètres</h2>
-            <button id="close-settings">X</button>
-        </div>
-        <label for="price-range">Plage de prix (€) :</label>
-        <input type="text" id="price-range" placeholder="ex : 500-2000" />
-        <label for="number-of-rounds">Nombre de manches :</label>
-        <input type="number" id="number-of-rounds" min="1" max="20" value="5" />
-        <button id="reset-settings" class="reset-button">Réinitialiser les paramètres</button>
-      </div>
-    </div>
-
-    <button id="settings-button"><img src="public/settings.png" alt="paramètres"/>️</button>
-    <a id="insta-button" target="_blank" href="https://instagram.com/nolanpcrd"><img src="public/insta.png" alt="insta"/>️</a>
-
-    <div id="guess-result-screen"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
 </html>

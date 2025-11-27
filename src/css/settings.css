@@ -1,0 +1,277 @@
+#settings-view {
+    background-image: url('/yellow-bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    width: 100%;
+}
+
+#settings-view .settings-page-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 500px;
+    max-width: 90%;
+    border: 2px solid #000;
+    box-shadow: -4px 4px 0 black;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#settings-view h2 {
+    margin: 0;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+#settings-view h3 {
+    margin: 0 0 15px 0;
+    font-size: 24px;
+    color: black;
+}
+
+#settings-view .setting-group {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid #000;
+}
+
+#settings-view .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: left;
+}
+
+#settings-view label {
+    font-size: 18px;
+    color: #000;
+}
+
+#settings-view input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: 'Lilita One', sans-serif;
+    box-sizing: border-box;
+}
+
+#settings-view input[type="text"]:focus {
+    outline: none;
+    border-color: #058CD7;
+}
+
+#settings-view input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    accent-color: #058CD7;
+    cursor: pointer;
+}
+
+#settings-view .form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#settings-view button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: 2px solid #000;
+    box-shadow: -4px 4px 0 black;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Lilita One', sans-serif;
+    transition: transform 0.1s, background-color 0.2s, box-shadow 0.1s;
+    color: white;
+    flex: 1;
+}
+
+#settings-view button:active {
+    box-shadow: 0 0 0 black;
+    transform: translateY(4px);
+}
+
+#settings-view #save-settings-btn {
+    background-color: #009A5E;
+}
+
+#settings-view #save-settings-btn:hover {
+    background-color: #00b36e;
+}
+
+#settings-view #back-btn {
+    background-color: #FD5A46;
+}
+
+#settings-view #back-btn:hover {
+    background-color: #ff6b58;
+}
+
+#settings-view button:active {
+    transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+    #settings-view .settings-page-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 2559px) {
+    #settings-view .settings-page-container {
+        width: 650px;
+        padding: 50px;
+        border-width: 3px;
+        border-radius: 25px;
+        box-shadow: -6px 6px 0 black;
+        gap: 30px;
+    }
+
+    #settings-view h2 {
+        font-size: 42px;
+    }
+
+    #settings-view h3 {
+        font-size: 32px;
+    }
+
+    #settings-view .setting-group {
+        padding: 25px;
+        border-width: 3px;
+        border-radius: 25px;
+    }
+
+    #settings-view label {
+        font-size: 24px;
+    }
+
+    #settings-view input[type="text"] {
+        padding: 16px;
+        font-size: 20px;
+        border-width: 3px;
+        border-radius: 25px;
+    }
+
+    #settings-view input[type="checkbox"] {
+        width: 32px;
+        height: 32px;
+    }
+
+    #settings-view button {
+        padding: 16px 32px;
+        font-size: 24px;
+        border-width: 3px;
+        border-radius: 25px;
+    }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) {
+    #settings-view .settings-page-container {
+        width: 900px;
+        padding: 70px;
+        border-width: 4px;
+        border-radius: 35px;
+        box-shadow: -10px 10px 0 black;
+        gap: 35px;
+    }
+
+    #settings-view h2 {
+        font-size: 56px;
+    }
+
+    #settings-view h3 {
+        font-size: 42px;
+    }
+
+    #settings-view .setting-group {
+        padding: 35px;
+        border-width: 4px;
+        border-radius: 35px;
+    }
+
+    #settings-view label {
+        font-size: 32px;
+    }
+
+    #settings-view input[type="text"] {
+        padding: 24px;
+        font-size: 28px;
+        border-width: 4px;
+        border-radius: 35px;
+    }
+
+    #settings-view input[type="checkbox"] {
+        width: 48px;
+        height: 48px;
+    }
+
+    #settings-view button {
+        padding: 24px 48px;
+        font-size: 32px;
+        border-width: 4px;
+        border-radius: 35px;
+    }
+}
+
+@media (min-width: 3840px) {
+    #settings-view .settings-page-container {
+        width: 1200px;
+        padding: 90px;
+        border-width: 6px;
+        border-radius: 50px;
+        box-shadow: -12px 12px 0 black;
+        gap: 50px;
+    }
+
+    #settings-view h2 {
+        font-size: 72px;
+    }
+
+    #settings-view h3 {
+        font-size: 56px;
+    }
+
+    #settings-view .setting-group {
+        padding: 50px;
+        border-width: 6px;
+        border-radius: 50px;
+    }
+
+    #settings-view label {
+        font-size: 42px;
+    }
+
+    #settings-view input[type="text"] {
+        padding: 32px;
+        font-size: 36px;
+        border-width: 6px;
+        border-radius: 50px;
+    }
+
+    #settings-view input[type="checkbox"] {
+        width: 60px;
+        height: 60px;
+    }
+
+    #settings-view button {
+        padding: 32px 64px;
+        font-size: 42px;
+        border-width: 6px;
+        border-radius: 50px;
+    }
+}
