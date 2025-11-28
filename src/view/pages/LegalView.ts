@@ -1,13 +1,9 @@
-import Router from "../../utils/Router.ts";
-
 export default class LegalView {
     private container: HTMLElement;
-    private router: Router;
 
     constructor() {
         this.container = document.createElement("div");
         this.container.id = "legal-view";
-        this.router = Router.getInstance();
     }
 
     public render(parent: HTMLElement): void {
@@ -54,14 +50,5 @@ export default class LegalView {
         `;
 
         parent.appendChild(this.container);
-        this.attachEvents();
-    }
-
-    private attachEvents(): void {
-        const backBtn = this.container.querySelector("#back-btn") as HTMLButtonElement;
-
-        backBtn.addEventListener("click", () => {
-            this.router.navigate("#game");
-        });
     }
 }
