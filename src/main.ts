@@ -8,6 +8,7 @@ import PlaylistListView from "./view/pages/PlaylistListView.ts";
 import PlaylistEditView from "./view/pages/PlaylistEditView.ts";
 import PlaylistBrowserView from "./view/pages/PlaylistBrowserView.ts";
 import SettingsView from "./view/pages/SettingsView.ts";
+import LegalView from "./view/pages/LegalView.ts";
 import TwitchService from "./WebService/TwitchService.ts";
 import MenuView from "./view/MenuView.ts";
 
@@ -32,6 +33,7 @@ const playlistListView = new PlaylistListView();
 const playlistEditView = new PlaylistEditView();
 const playlistBrowserView = new PlaylistBrowserView();
 const settingsView = new SettingsView();
+const legalView = new LegalView();
 const battleRoyaleView = new BattleRoyaleView();
 
 router.addRoute("/", () => {
@@ -116,6 +118,13 @@ router.addRoute("#battle-royale", () => {
     contentContainer.innerHTML = "";
     menuView.setVisible(true);
     battleRoyaleView.render(contentContainer);
+});
+
+router.addRoute("#legal", () => {
+    cleanup();
+    contentContainer.innerHTML = "";
+    menuView.setVisible(true);
+    legalView.render(contentContainer);
 });
 
 

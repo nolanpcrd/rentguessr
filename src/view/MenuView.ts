@@ -25,6 +25,7 @@ export default class MenuView {
                         <a href="#" data-route="#battle-royale">BATTLE ROYALE</a>
                         <a href="#" data-route="#playlists/me">MES PLAYLISTS</a>
                         <a href="#" data-route="#playlists">PARCOURIR PLAYLISTS</a>
+                        <a href="#" data-route="#legal">CGU & MENTIONS LÉGALES</a>
                         <a href="#" data-route="#settings">PARAMÈTRES</a>
                         <a href="#" id="logout-btn">DÉCONNEXION</a>
                         <a href="#" id="login-btn">CONNEXION</a>
