@@ -105,7 +105,7 @@
     #legal-view .legal-page-container {
         width: 95%;
         padding: 20px;
-        margin-bottom: 70px;
+        height: 80vh;
     }
 
     #legal-view h2 {
