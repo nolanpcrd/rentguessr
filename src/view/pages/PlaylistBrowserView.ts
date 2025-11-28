@@ -72,7 +72,7 @@ export default class PlaylistBrowserView {
                             <img src="${p.thumbnail || 'public/placeholder.png'}" alt="${this.removeHtml(p.name)}" class="playlist-thumb">
                             <div class="playlist-info">
                                 <h3>${this.removeHtml(p.name)}</h3>
-                                <p>Par ${p.creator}</p>
+                                <p>Par ${this.removeHtml(p.creator)}</p>
                                 <p>${p.rent_count} appartement(s) - Jouée ${p.played} fois</p>
                                  <div class="playlist-actions">
                                     <button class="play-btn" data-id="${p.id}">Jouer</button>

@@ -93,11 +93,15 @@ export default class BattleRoyaleGame {
         this.resultContainer.style.display = "none";
     }
 
+    private removeHtml(str: string): string {
+        return str.replace(/<[^>]*>/g, '');
+    }
+
     private updateLobbyUI(data: any) {
         const playerList = document.getElementById("br-player-list");
         if (playerList) {
             playerList.innerHTML = data.players.map((p: any) =>
-                `<li>${p.name}</li>`
+                `<li>${this.removeHtml(p.name)}</li>`
             ).join("");
         }
 
@@ -193,7 +197,7 @@ export default class BattleRoyaleGame {
                 </div>`;
 
         if (data.eliminated.length > 0) {
-            html += `<div class="result-points" style="color: #FD5A46;">Éliminé: ${data.eliminated.join(", ")}</div>`;
+            html += `<div class="result-points" style="color: #FD5A46;">Éliminé: ${this.removeHtml(data.eliminated.join(", "))}</div>`;
         }
 
         html += `
@@ -209,9 +213,9 @@ export default class BattleRoyaleGame {
                 <li class="br-standing-item" style="background-color: ${bgColor}; border: 2px solid #000; color: white;">
                     <div class="br-standing-rank" style="color: white;">${index + 1}</div>
                     <div class="br-standing-info">
-                        <div class="br-standing-name" style="color: white;">${res.name}</div>
+                        <div class="br-standing-name" style="color: white;">${this.removeHtml(res.name)}</div>
                         <div class="br-standing-details" style="color: white;">
-                            Guess: <strong>${res.guess === null ? "-" : res.guess}€</strong> | Distance: ${res.distance === null ? "-" : res.distance}€ | ${status}
+                            Guess: <strong>${res.guess === null ? "-" : this.removeHtml(res.guess)}€</strong> | Distance: ${res.distance === null ? "-" : res.distance}€ | ${status}
                         </div>
                     </div>
                 </li>`;
@@ -250,7 +254,7 @@ export default class BattleRoyaleGame {
             <div class="fullscreen-result ${bgClass}">
                 <h1 class="result-title">${title}</h1>
                 <div class="final-stats">
-                    <p class="stats-label">${isWinner ? 'Félicitations ! Vous avez gagné !' : 'Vainqueur: ' + data.winnerName}</p>
+                    <p class="stats-label">${isWinner ? 'Félicitations ! Vous avez gagné !' : 'Vainqueur: ' + this.removeHtml(data.winnerName)}</p>
                 </div>
                 <button id="br-back-lobby" class="next-btn">Retour au Lobby</button>
             </div>
