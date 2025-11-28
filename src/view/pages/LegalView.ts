@@ -50,10 +50,6 @@ export default class LegalView {
                         <p>Pour toute question concernant le site ou ces mentions légales, vous pouvez nous contacter via nolan.picard39@gmail.com.</p>
                     </div>
                 </div>
-
-                <div class="form-actions">
-                    <button id="back-btn">Retour</button>
-                </div>
             </div>
         `;
 

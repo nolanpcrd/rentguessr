@@ -7,17 +7,6 @@
     width: 100%;
 }
 
-#login-view a {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #000;
-    padding: 10px 20px;
-    border-radius: 15px;
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 1.2em;
-    border: 2px solid #000;
-}
-
 #login-view #back-button {
     position: absolute;
     left: 10%;
@@ -148,6 +137,10 @@
     font-weight: 400;
 }
 
+.accept-cgu-link {
+    color: black;
+}
+
 @media (max-width: 768px) {
     #login-view .form-container {
         width: 90%;
@@ -162,14 +155,6 @@
         border-radius: 25px;
         box-shadow: -6px 6px 0 black;
     }
-
-    #login-view a {
-        padding: 15px 30px;
-        font-size: 1.5em;
-        border-width: 3px;
-        border-radius: 25px;
-    }
-
     #login-view .toggle {
         border-width: 3px;
         border-radius: 25px;
@@ -202,6 +187,10 @@
         border-width: 3px;
         border-radius: 25px;
     }
+
+    .accept-cgu {
+        font-size: 24px;
+    }
 }
 
 @media (min-width: 2560px) and (max-width: 3839px) {
@@ -213,12 +202,6 @@
         box-shadow: -10px 10px 0 black;
     }
 
-    #login-view a {
-        padding: 24px 48px;
-        font-size: 2em;
-        border-width: 4px;
-        border-radius: 35px;
-    }
 
     #login-view .toggle {
         border-width: 4px;
@@ -252,6 +235,10 @@
         border-width: 4px;
         border-radius: 35px;
     }
+
+    .accept-cgu {
+        font-size: 30px;
+    }
 }
 
 @media (min-width: 3840px) {
@@ -261,13 +248,6 @@
         border-width: 6px;
         border-radius: 50px;
         box-shadow: -12px 12px 0 black;
-    }
-
-    #login-view a {
-        padding: 32px 64px;
-        font-size: 2.6em;
-        border-width: 6px;
-        border-radius: 50px;
     }
 
     #login-view .toggle {
@@ -301,5 +281,9 @@
         font-size: 48px;
         border-width: 6px;
         border-radius: 50px;
+    }
+
+    .accept-cgu {
+        font-size: 40px;
     }
 }

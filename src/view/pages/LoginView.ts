@@ -30,6 +30,9 @@ export default class LoginView {
                     <input type="password" id="password" name="password" placeholder="MotDePasse123" required>
                     <button type="submit" id="submitBtn">Se connecter</button>
                 </form>
+                <p class="accept-cgu">
+                    En continuant, vous acceptez nos <a href="#legal" id="legal-link" class="accept-cgu-link">Conditions Générales d'Utilisation et Mentions Légales</a>.
+                </p>
             </div>
         `;
 
