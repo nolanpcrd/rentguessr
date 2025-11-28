@@ -110,6 +110,8 @@ export default class BattleRoyaleGame {
     private startRound(data: any) {
         if (this.isEliminated) return;
 
+        document.dispatchEvent(new CustomEvent("newRound"));
+
         this.resultContainer.style.display = "none";
         this.resultContainer.classList.remove("show");
         this.gameContainer.style.display = "flex";
@@ -145,10 +147,10 @@ export default class BattleRoyaleGame {
             timeLeft--;
             this.timerElement.textContent = timeLeft.toFixed(0);
             if (timeLeft <= 10) {
-                this.timerElement.style.backgroundColor="#FD5A46"
+                this.timerElement.style.backgroundColor = "#FD5A46"
             }
             if (timeLeft <= 0) {
-                this.timerElement.style.backgroundColor="#00995E"
+                this.timerElement.style.backgroundColor = "#00995E"
                 if (this.timerInterval) clearInterval(this.timerInterval);
             }
         }, 1000);
