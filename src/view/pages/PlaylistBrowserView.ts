@@ -69,9 +69,9 @@ export default class PlaylistBrowserView {
                 <div class="playlists-grid">
                     ${playlists.length ? playlists.map(p => `
                         <div class="playlist-card" data-id="${p.id}">
-                            <img src="${p.thumbnail || 'public/placeholder.png'}" alt="${p.name}" class="playlist-thumb">
+                            <img src="${p.thumbnail || 'public/placeholder.png'}" alt="${this.removeHtml(p.name)}" class="playlist-thumb">
                             <div class="playlist-info">
-                                <h3>${p.name}</h3>
+                                <h3>${this.removeHtml(p.name)}</h3>
                                 <p>Par ${p.creator}</p>
                                 <p>${p.rent_count} appartement(s) - Jouée ${p.played} fois</p>
                                  <div class="playlist-actions">
@@ -91,6 +91,10 @@ export default class PlaylistBrowserView {
         `;
 
         this.attachEvents();
+    }
+
+    private removeHtml(str: string): string {
+        return str.replace(/<[^>]*>/g, '');
     }
 
     private attachEvents(): void {

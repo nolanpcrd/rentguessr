@@ -35,9 +35,9 @@ export default class PlaylistListView {
                 <div class="playlists-grid">
                     ${playlists.map(p => `
                         <div class="playlist-card" data-id="${p.id}">
-                            <img src="${p.thumbnail || 'public/placeholder.png'}" alt="${p.name}" class="playlist-thumb">
+                            <img src="${p.thumbnail || 'public/placeholder.png'}" alt="${this.removeHtml(p.name)}" class="playlist-thumb">
                             <div class="playlist-info">
-                                <h3>${p.name}</h3>
+                                <h3>${this.removeHtml(p.name)}</h3>
                                 <p>${p.rent_count} appartement(s) - Jouée ${p.played} fois</p>
                                 <div class="playlist-actions">
                                     <button class="edit-btn" data-id="${p.id}">Modifier</button>
@@ -51,6 +51,10 @@ export default class PlaylistListView {
         `;
 
         this.attachEvents();
+    }
+
+    private removeHtml(str: string): string {
+        return str.replace(/<[^>]*>/g, '');
     }
 
     private attachEvents(): void {
