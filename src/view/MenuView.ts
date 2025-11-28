@@ -22,6 +22,7 @@ export default class MenuView {
                     <button id="menu-close-btn">FERMER</button>
                     <nav class="menu-links">
                         <a href="#" data-route="#game">JOUER</a>
+                        <a href="#" data-route="#battle-royale">BATTLE ROYALE</a>
                         <a href="#" data-route="#playlists/me">MES PLAYLISTS</a>
                         <a href="#" data-route="#playlists">PARCOURIR PLAYLISTS</a>
                         <a href="#" data-route="#settings">PARAMÈTRES</a>
@@ -96,11 +97,16 @@ export default class MenuView {
     private updateMenuState(): void {
         const isAuthenticated = this.authService.isAuthenticated();
         const myPlaylistsLink = this.container.querySelector('a[data-route="#playlists/me"]') as HTMLElement;
+        const brLink = this.container.querySelector('a[data-route="#battle-royale"]') as HTMLElement;
         const logoutBtn = this.container.querySelector('#logout-btn') as HTMLElement;
         const loginBtn = this.container.querySelector('#login-btn') as HTMLElement;
 
         if (myPlaylistsLink) {
             myPlaylistsLink.style.display = isAuthenticated ? "block" : "none";
+        }
+
+        if (brLink) {
+            brLink.style.display = isAuthenticated ? "block" : "none";
         }
 
         if (logoutBtn) {

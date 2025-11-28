@@ -296,6 +296,7 @@ input {
 }
 
 #guess-input,
+#br-guess-input,
 #twitch-name {
     flex: 1;
     padding: 15px 50px 15px 15px;
@@ -307,12 +308,14 @@ input {
 }
 
 #guess-input:focus,
+#br-guess-input:focus,
 #twitch-name:focus {
     outline: none;
     border-color: #058CD7;
 }
 
 #guess-input:disabled,
+#br-guess-input:disabled,
 #twitch-name:disabled {
     background-color: #f5f5f5;
     cursor: not-allowed;
@@ -335,6 +338,7 @@ input {
 }
 
 #submit-guess,
+#br-submit-guess,
 #load-twitch {
     padding: 15px 40px;
     font-size: 18px;
@@ -351,12 +355,14 @@ input {
 
 
 #submit-guess:active:not(:disabled),
+#br-submit-guess:active:not(:disabled),
 #load-twitch:active:not(:disabled) {
     transform: translateY(4px);
     box-shadow: 0 0 0 black;
 }
 
 #submit-guess:disabled,
+#br-submit-guess:disabled,
 #load-twitch:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -382,11 +388,11 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 40px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow-y: auto;
 }
 
 .fullscreen-result.excellent {
@@ -801,12 +807,14 @@ input {
     }
 
     #guess-input,
+    #br-guess-input,
     #twitch-name {
         font-size: 16px;
         border: 2px solid #000000;
     }
 
     #submit-guess,
+    #br-submit-guess,
     #load-twitch {
         padding: 12px 30px;
         font-size: 16px;
@@ -969,6 +977,7 @@ input {
     }
 
     #guess-input,
+    #br-guess-input,
     #twitch-name {
         padding: 18px 60px 18px 20px;
         font-size: 24px;
@@ -984,6 +993,7 @@ input {
     }
 
     #submit-guess,
+    #br-submit-guess,
     #load-twitch {
         padding: 18px 45px;
         font-size: 24px;
@@ -1352,6 +1362,7 @@ input {
     }
 
     #guess-input,
+    #br-guess-input,
     #twitch-name {
         padding: 28px 90px 28px 35px;
         font-size: 38px;
@@ -1367,6 +1378,7 @@ input {
     }
 
     #submit-guess,
+    #br-submit-guess,
     #load-twitch {
         padding: 28px 70px;
         font-size: 38px;
@@ -1602,6 +1614,7 @@ input {
     }
 
     #guess-input,
+    #br-guess-input,
     #twitch-name {
         padding: 38px 120px 38px 45px;
         font-size: 50px;
@@ -1617,6 +1630,7 @@ input {
     }
 
     #submit-guess,
+    #br-submit-guess,
     #load-twitch {
         padding: 38px 90px;
         font-size: 50px;

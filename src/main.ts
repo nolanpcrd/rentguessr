@@ -2,6 +2,7 @@ import Router from "./utils/Router.ts";
 import AuthService from "./WebService/AuthService.ts";
 import LoginView from "./view/pages/LoginView.ts";
 import GameView from "./view/pages/GameView.ts";
+import BattleRoyaleView from "./view/pages/BattleRoyaleView.ts";
 
 import PlaylistListView from "./view/pages/PlaylistListView.ts";
 import PlaylistEditView from "./view/pages/PlaylistEditView.ts";
@@ -31,12 +32,19 @@ const playlistListView = new PlaylistListView();
 const playlistEditView = new PlaylistEditView();
 const playlistBrowserView = new PlaylistBrowserView();
 const settingsView = new SettingsView();
+const battleRoyaleView = new BattleRoyaleView();
 
 router.addRoute("/", () => {
+    cleanup();
     router.navigate("#game");
 });
 
+const cleanup = () => {
+    battleRoyaleView.destroy();
+};
+
 router.addRoute("#login", () => {
+    cleanup();
     contentContainer.innerHTML = "";
     menuView.setVisible(false);
     loginView.render(contentContainer);
@@ -44,18 +52,21 @@ router.addRoute("#login", () => {
 });
 
 router.addRoute("#game", () => {
+    cleanup();
     contentContainer.innerHTML = "";
     menuView.setVisible(true);
     gameView.render(contentContainer);
 });
 
 router.addRoute("#game/playlist/:id", (id: string) => {
+    cleanup();
     contentContainer.innerHTML = "";
     menuView.setVisible(true);
     gameView.render(contentContainer, id);
 });
 
 router.addRoute("#playlists/me", () => {
+    cleanup();
     if (!authService.isAuthenticated()) {
         router.navigate("#login");
         return;
@@ -66,6 +77,7 @@ router.addRoute("#playlists/me", () => {
 });
 
 router.addRoute("#playlists/create", () => {
+    cleanup();
     if (!authService.isAuthenticated()) {
         router.navigate("#login");
         return;
@@ -76,6 +88,7 @@ router.addRoute("#playlists/create", () => {
 });
 
 router.addRoute("#playlists/edit/:id", (id: string) => {
+    cleanup();
     if (!authService.isAuthenticated()) {
         router.navigate("#login");
         return;
@@ -86,15 +99,23 @@ router.addRoute("#playlists/edit/:id", (id: string) => {
 });
 
 router.addRoute("#playlists", () => {
+    cleanup();
     contentContainer.innerHTML = "";
     menuView.setVisible(true);
     playlistBrowserView.render(contentContainer);
 });
 
 router.addRoute("#settings", () => {
+    cleanup();
     contentContainer.innerHTML = "";
     menuView.setVisible(true);
     settingsView.render(contentContainer);
+});
+
+router.addRoute("#battle-royale", () => {
+    contentContainer.innerHTML = "";
+    menuView.setVisible(true);
+    battleRoyaleView.render(contentContainer);
 });
 
 

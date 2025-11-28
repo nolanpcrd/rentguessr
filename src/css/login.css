@@ -120,20 +120,21 @@
     color: white;
     padding: 15px;
     border: 2px solid #000;
+    box-shadow: -4px 4px 0 black;
     border-radius: 15px;
     background-color: #058CD7;
     font-size: 20px;
     cursor: pointer;
     width: 100%;
     margin-top: 10px;
-    transition: background-color 0.3s ease, transform 0.1s;
+    transition: background-color 0.3s ease, transform 0.1s, box-shadow 0.1s;
     font-family: 'Lilita One', sans-serif;
     font-weight: 900;
 }
 
 #login-view #submitBtn:active {
-    transform: translateY(2px);
-    box-shadow: none;
+    transform: translateY(4px);
+    box-shadow: 0 0 0 black;
 }
 
 #login-view #username,
