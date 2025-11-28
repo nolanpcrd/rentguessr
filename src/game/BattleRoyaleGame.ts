@@ -144,7 +144,11 @@ export default class BattleRoyaleGame {
         this.timerInterval = setInterval(() => {
             timeLeft--;
             this.timerElement.textContent = timeLeft.toFixed(0);
+            if (timeLeft <= 10) {
+                this.timerElement.style.backgroundColor="#FD5A46"
+            }
             if (timeLeft <= 0) {
+                this.timerElement.style.backgroundColor="#00995E"
                 if (this.timerInterval) clearInterval(this.timerInterval);
             }
         }, 1000);
