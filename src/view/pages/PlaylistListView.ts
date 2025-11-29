@@ -54,7 +54,12 @@ export default class PlaylistListView {
     }
 
     private removeHtml(str: string): string {
-        return str.replace(/<[^>]*>/g, '');
+        let result =  str.replace(/<[^>]*>/g, '');
+        result = result.replace(/font-family:[^;"]*;?/g, '');
+        return result.normalize("NFKD").replace(/[\u{1D400}-\u{1D7FF}]/gu, c => {
+            const base = c.normalize("NFKD").replace(/[^\w\s.-]/g, "");
+            return base || c;
+        });
     }
 
     private attachEvents(): void {
