@@ -21,7 +21,7 @@ export default class AudioManager {
         if (this.backgroundMusic) {
             this.stopBackgroundMusic();
         }
-        this.backgroundMusic = new Audio(`public/audio/musics/${musicName}.mp3`);
+        this.backgroundMusic = new Audio(`audio/musics/${musicName}.mp3`);
         this.backgroundMusic.loop = true;
         this.backgroundMusic.volume = this.volume;
         this.backgroundMusic.play().catch(e => console.warn("Audio play failed:", e));
@@ -52,7 +52,7 @@ export default class AudioManager {
     }
 
     public playSoundEffect(effectName: string): void {
-        const soundEffect = new Audio(`public/audio/sounds/${effectName}.mp3`);
+        const soundEffect = new Audio(`audio/sounds/${effectName}.mp3`);
         soundEffect.volume = this.volume;
         soundEffect.play().catch(e => console.warn("Sound effect play failed:", e));
     }
