@@ -33,7 +33,7 @@ export default class SettingsView {
                 
                 <div class="setting-group">
                     <h3>Volume</h3>
-                    <div class="form-group">
+                    <div class="form-group volume-group">
                         <label for="volume-slider">Volume : <span id="volume-value">50</span>%</label>
                         <input type="range" id="volume-slider" min="0" max="100" value="50">
                     </div>

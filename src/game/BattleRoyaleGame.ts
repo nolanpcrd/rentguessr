@@ -36,7 +36,6 @@ export default class BattleRoyaleGame {
 
     private initializeListeners() {
         this.service.on("br_joined", (data: any) => {
-            console.log("Joined BR with ID:", data.id);
             this.playerId = data.id;
             this.lobbyCode = data.lobbyCode || null;
             this.showLobby();
@@ -50,7 +49,6 @@ export default class BattleRoyaleGame {
         });
 
         this.service.on("br_game_start", () => {
-            console.log("Game Started!");
             this.showGame();
         });
 
@@ -73,6 +71,17 @@ export default class BattleRoyaleGame {
         this.service.on("br_timer_cancel", () => {
             this.cancelLobbyTimer();
         });
+
+        this.service.on("br_error", (data: any) => {
+            if (confirm(data.message)) {
+                window.location.reload();
+            }
+        });
+
+        this.service.on("br_connection_error", (data: any) => {
+            alert(data.message);
+            window.location.reload();
+        });
     }
 
     public async join() {
@@ -80,9 +89,9 @@ export default class BattleRoyaleGame {
         this.service.joinLobby();
     }
 
-    public async createPrivate() {
+    public async createPrivate(roundDuration?: number) {
         await this.service.connect();
-        this.service.createPrivateLobby();
+        this.service.createPrivateLobby(roundDuration);
     }
 
     public async joinWithCode(code: string) {
@@ -93,6 +102,12 @@ export default class BattleRoyaleGame {
     private showLobby() {
         this.lobbyContainer.style.display = "block";
         this.gameContainer.style.display = "none";
+
+        const joinContainer = document.getElementById("br-join-container");
+        const lobbyContent = document.getElementById("br-lobby-content");
+        if (joinContainer) joinContainer.style.display = "none";
+        if (lobbyContent) lobbyContent.style.display = "block";
+
         const gameHeader = document.getElementById("br-game-header") as HTMLElement;
         if (gameHeader) gameHeader.style.display = "none";
         const formContainer = document.getElementById("form-container") as HTMLElement;
@@ -153,7 +168,6 @@ export default class BattleRoyaleGame {
     }
 
     private removeHtml(str: string): string {
-        console.log(str);
         let result = str.replace(/<[^>]*>/g, '');
         result = result.replace(/font-family:[^;"]*;?/g, '');
         return result.normalize("NFKD").replace(/[\u{1D400}-\u{1D7FF}]/gu, c => {

@@ -25,7 +25,6 @@ export default class BattleRoyaleService {
             this.socket = new WebSocket(this.url);
 
             this.socket.onopen = () => {
-                console.log("Connected to Battle Royale Server");
                 resolve();
             };
 
@@ -40,12 +39,13 @@ export default class BattleRoyaleService {
 
             this.socket.onerror = (error) => {
                 console.error("WebSocket error:", error);
+                this.dispatch("br_connection_error", { message: "Erreur de connexion au serveur." });
                 reject(error);
             };
 
             this.socket.onclose = () => {
-                console.log("Disconnected from Battle Royale Server");
                 this.socket = null;
+                this.dispatch("br_connection_error", { message: "La connexion au serveur a été perdue." });
             };
         });
     }
@@ -70,12 +70,16 @@ export default class BattleRoyaleService {
         this.send(message);
     }
 
-    public createPrivateLobby(): void {
+    public createPrivateLobby(roundDuration?: number): void {
         const token = AuthService.getInstance().getToken();
-        this.send({
+        const payload: any = {
             type: "create_private_br",
             token: token
-        });
+        };
+        if (roundDuration) {
+            payload.roundDuration = roundDuration;
+        }
+        this.send(payload);
     }
 
     public sendGuess(guess: number): void {

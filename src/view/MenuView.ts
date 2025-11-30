@@ -34,6 +34,7 @@ export default class MenuView {
                 <div class="credits">
                     <p>Jeu par : nolanpcrd</p>
                     <p>Musique & conseils UX par : minhui</p>
+                    <a href="https://paypal.me/nolanpcrd" style="color: white">Ptit lien vers le paypal car les serveurs vont couter cheeer :')</a>
                 </div>
             </div>
 </div>

@@ -23,7 +23,7 @@ export default class BattleRoyaleView {
                 <div id="br-lobby-content" style="display: none;">
                     <div id="br-player-count">En attente de joueurs...</div>
                     <ul id="br-player-list" class="player-list"></ul>
-                    <div id="br-lobby-timer" style="display: none; font-size: 1.5em; margin-top: 20px;">La partie commence dans <span id="br-lobby-countdown">30</span>s !</div>
+                    <div id="br-lobby-timer" style="display: none; font-size: 1.5em; margin-top: 20px;">La partie commence dans <span id="br-lobby-countdown">20</span>s !</div>
                 </div>
             </div>
 
@@ -34,6 +34,17 @@ export default class BattleRoyaleView {
                     <div class="join-private-buttons">
                         <button class="br-btn br-btn-green" id="join-private-confirm">Rejoindre</button>
                         <button class="br-btn br-btn-red" id="join-private-cancel">Annuler</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="join-private-modal" id="create-private-modal">
+                <div class="join-private-content">
+                    <h2>Créer un Lobby Privé</h2>
+                    <input type="text" id="private-duration-input" placeholder="Entrez la durée d'un round (en s) " maxlength="3" />
+                    <div class="join-private-buttons">
+                        <button class="br-btn br-btn-green" id="create-private-confirm">Créer</button>
+                        <button class="br-btn br-btn-red" id="create-private-cancel">Annuler</button>
                     </div>
                 </div>
             </div>
@@ -85,22 +96,44 @@ export default class BattleRoyaleView {
             joinPublicBtn.addEventListener("click", () => {
                 AudioManager.getInstance().enableAudio();
                 this.game?.join();
-                const joinContainer = document.getElementById("br-join-container");
-                const lobbyContent = document.getElementById("br-lobby-content");
-                if (joinContainer) joinContainer.style.display = "none";
-                if (lobbyContent) lobbyContent.style.display = "block";
             });
         }
 
         const createPrivateBtn = document.getElementById("br-create-private-btn");
-        if (createPrivateBtn) {
+        const createModal = document.getElementById("create-private-modal");
+        const durationInput = document.getElementById("private-duration-input") as HTMLInputElement;
+
+        if (createPrivateBtn && createModal) {
             createPrivateBtn.addEventListener("click", () => {
+                createModal.classList.add("show");
+                durationInput.value = "";
+                durationInput.focus();
+            });
+        }
+
+        const createPrivateConfirm = document.getElementById("create-private-confirm");
+        if (createPrivateConfirm && createModal) {
+            createPrivateConfirm.addEventListener("click", () => {
+                const durationStr = durationInput.value.trim();
+                let duration: number | undefined = undefined;
+
+                if (durationStr) {
+                    const parsed = parseInt(durationStr);
+                    if (!isNaN(parsed) && parsed > 0) {
+                        duration = parsed * 1000;
+                    }
+                }
+
                 AudioManager.getInstance().enableAudio();
-                this.game?.createPrivate();
-                const joinContainer = document.getElementById("br-join-container");
-                const lobbyContent = document.getElementById("br-lobby-content");
-                if (joinContainer) joinContainer.style.display = "none";
-                if (lobbyContent) lobbyContent.style.display = "block";
+                this.game?.createPrivate(duration);
+                createModal.classList.remove("show");
+            });
+        }
+
+        const createPrivateCancel = document.getElementById("create-private-cancel");
+        if (createPrivateCancel && createModal) {
+            createPrivateCancel.addEventListener("click", () => {
+                createModal.classList.remove("show");
             });
         }
 
@@ -124,10 +157,6 @@ export default class BattleRoyaleView {
                     AudioManager.getInstance().enableAudio();
                     this.game?.joinWithCode(code);
                     modal.classList.remove("show");
-                    const joinContainer = document.getElementById("br-join-container");
-                    const lobbyContent = document.getElementById("br-lobby-content");
-                    if (joinContainer) joinContainer.style.display = "none";
-                    if (lobbyContent) lobbyContent.style.display = "block";
                 }
             });
         }

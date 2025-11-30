@@ -483,7 +483,7 @@
     }
 
     .br-join-buttons {
-        gap: 25px;
+        gap: 30px;
     }
 
     .br-btn {
@@ -491,6 +491,7 @@
         font-size: 32px;
         border-radius: 28px;
         border-width: 4px;
+        box-shadow: -6px 6px 0 black;
     }
 
     .lobby-code-container {
@@ -613,7 +614,7 @@
     }
 
     .br-join-buttons {
-        gap: 30px;
+        gap: 40px;
     }
 
     .br-btn {
@@ -621,6 +622,7 @@
         font-size: 42px;
         border-radius: 50px;
         border-width: 6px;
+        box-shadow: -8px 8px 0 black;
     }
 
     .lobby-code-container {
@@ -871,8 +873,9 @@
     .br-btn {
         padding: 18px 36px;
         font-size: 24px;
-        border-radius: 30px;
+        border-radius: 18px;
         border-width: 3px;
+        box-shadow: -5px 5px 0 black;
     }
 
     .lobby-code-container {
@@ -893,8 +896,9 @@
     .lobby-code-btn {
         padding: 10px 20px;
         font-size: 16px;
-        border-radius: 18px;
+        border-radius: 14px;
         border-width: 3px;
+        box-shadow: -3px 3px 0 black;
     }
 
     .join-private-content {
@@ -913,5 +917,127 @@
         font-size: 24px;
         border-radius: 18px;
         border-width: 3px;
+    }
+
+    .join-private-buttons {
+        gap: 15px;
+    }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) {
+    .br-join-buttons {
+        gap: 30px;
+    }
+
+    .br-btn {
+        padding: 24px 48px;
+        font-size: 32px;
+        border-radius: 28px;
+        border-width: 4px;
+        box-shadow: -6px 6px 0 black;
+    }
+
+    .lobby-code-container {
+        padding: 35px;
+        border-radius: 30px;
+        border-width: 4px;
+    }
+
+    .lobby-code-label {
+        font-size: 28px;
+    }
+
+    .lobby-code-text {
+        font-size: 56px;
+        letter-spacing: 6px;
+    }
+
+    .lobby-code-btn {
+        padding: 12px 24px;
+        font-size: 20px;
+        border-radius: 18px;
+        border-width: 4px;
+        box-shadow: -4px 4px 0 black;
+    }
+
+    .join-private-content {
+        padding: 50px;
+        border-radius: 35px;
+        border-width: 4px;
+        max-width: 800px;
+    }
+
+    .join-private-content h2 {
+        font-size: 56px;
+    }
+
+    .join-private-content input {
+        padding: 24px;
+        font-size: 32px;
+        border-radius: 24px;
+        border-width: 4px;
+    }
+
+    .join-private-buttons {
+        gap: 18px;
+    }
+}
+
+@media (min-width: 3840px) {
+    .br-join-buttons {
+        gap: 40px;
+    }
+
+    .br-btn {
+        padding: 30px 60px;
+        font-size: 42px;
+        border-radius: 30px;
+        border-width: 6px;
+        box-shadow: -8px 8px 0 black;
+    }
+
+    .lobby-code-container {
+        padding: 45px;
+        border-radius: 40px;
+        border-width: 6px;
+    }
+
+    .lobby-code-label {
+        font-size: 36px;
+    }
+
+    .lobby-code-text {
+        font-size: 72px;
+        letter-spacing: 8px;
+    }
+
+    .lobby-code-btn {
+        padding: 16px 32px;
+        font-size: 24px;
+        border-radius: 28px;
+        border-width: 6px;
+        box-shadow: -6px 6px 0 black;
+    }
+
+    .join-private-content {
+        padding: 60px;
+        border-radius: 50px;
+        border-width: 6px;
+        max-width: 1000px;
+    }
+
+    .join-private-content h2 {
+        font-size: 72px;
+    }
+
+    .join-private-content input {
+        padding: 30px;
+        font-size: 42px;
+        border-radius: 30px;
+        border-width: 6px;
+    }
+
+    .join-private-buttons {
+        gap: 20px;
     }
 }

@@ -726,6 +726,16 @@ input {
     width: 80%;
 }
 
+.credits {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: white;
+    opacity: 0.6;
+}
+
+
 @media (max-width: 1000px) {
     .game-container {
         flex-direction: column;
@@ -1119,6 +1129,10 @@ input {
         font-size: 28px;
         border-width: 3px;
         box-shadow: -6px 6px 0 black;
+    }
+
+    .credits {
+        font-size: 24px;
     }
 }
 
@@ -1519,6 +1533,10 @@ input {
         box-shadow: -10px 10px 0 black;
         border-radius: 18px;
     }
+
+    .credits {
+        font-size: 40px;
+    }
 }
 
 @media (min-width: 3840px) {
@@ -1786,6 +1804,10 @@ input {
         box-shadow: -12px 12px 0 black;
         border-radius: 24px;
     }
+
+    .credits {
+        font-size: 45px;
+    }
 }
 
 #start-overlay {
@@ -1818,16 +1840,15 @@ input {
 }
 
 @keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
-}
+    0% {
+        opacity: 0.5;
+    }
 
-.credits {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    font-size: 16px;
-    color: white;
-    opacity: 0.6;
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
 }
