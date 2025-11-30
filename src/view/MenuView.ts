@@ -31,7 +31,12 @@ export default class MenuView {
                         <a href="#" id="login-btn">CONNEXION</a>
                     </nav>
                 </div>
+                <div class="credits">
+                    <p>Jeu par : nolanpcrd</p>
+                    <p>Musique & conseils UX par : minhui</p>
+                </div>
             </div>
+</div>
         `;
 
         parent.appendChild(this.container);
@@ -75,8 +80,16 @@ export default class MenuView {
                 e.preventDefault();
                 const route = (e.target as HTMLElement).getAttribute("data-route");
                 if (route) {
-                    this.router.navigate(route);
-                    toggleMenu();
+                    if (window.location.hash === route) {
+                        window.location.hash = "";
+                        setTimeout(() => {
+                            this.router.navigate(route);
+                            toggleMenu();
+                        }, 0);
+                    } else {
+                        this.router.navigate(route);
+                        toggleMenu();
+                    }
                 }
             });
         });

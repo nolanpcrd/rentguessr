@@ -122,7 +122,6 @@ export default class PlaylistEditView {
                 try {
                     await this.playlistService.addRent(this.playlistId!, url);
                     rentUrlInput.value = "";
-                    // Reload to show new rent
                     this.render(this.container.parentElement as HTMLElement, this.playlistId!);
                 } catch (error: any) {
                     alert("Erreur: " + error.message);

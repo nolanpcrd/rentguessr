@@ -58,10 +58,22 @@ export default class BattleRoyaleService {
         this.listeners.clear();
     }
 
-    public joinLobby(): void {
+    public joinLobby(code?: string): void {
+        const token = AuthService.getInstance().getToken();
+        const message: any = {
+            type: "join_br",
+            token: token
+        };
+        if (code) {
+            message.code = code;
+        }
+        this.send(message);
+    }
+
+    public createPrivateLobby(): void {
         const token = AuthService.getInstance().getToken();
         this.send({
-            type: "join_br",
+            type: "create_private_br",
             token: token
         });
     }

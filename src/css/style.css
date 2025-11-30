@@ -1787,3 +1787,47 @@ input {
         border-radius: 24px;
     }
 }
+
+#start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.start-content {
+    text-align: center;
+}
+
+.start-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.start-content p {
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.credits {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: white;
+    opacity: 0.6;
+}

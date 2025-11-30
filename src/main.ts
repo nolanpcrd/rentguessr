@@ -11,6 +11,7 @@ import SettingsView from "./view/pages/SettingsView.ts";
 import LegalView from "./view/pages/LegalView.ts";
 import TwitchService from "./WebService/TwitchService.ts";
 import MenuView from "./view/MenuView.ts";
+import AudioManager from "./utils/AudioManager.ts";
 
 const router = Router.getInstance();
 const authService = AuthService.getInstance();
@@ -43,6 +44,8 @@ router.addRoute("/", () => {
 
 const cleanup = () => {
     battleRoyaleView.destroy();
+    gameView.destroy();
+    AudioManager.getInstance().stopBackgroundMusic();
 };
 
 router.addRoute("#login", () => {
@@ -115,6 +118,7 @@ router.addRoute("#settings", () => {
 });
 
 router.addRoute("#battle-royale", () => {
+    cleanup();
     contentContainer.innerHTML = "";
     menuView.setVisible(true);
     battleRoyaleView.render(contentContainer);

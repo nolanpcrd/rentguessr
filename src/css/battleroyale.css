@@ -227,6 +227,52 @@
     .br-standing-details {
         font-size: 14px;
     }
+
+    .br-join-buttons {
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .br-btn {
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+
+    .lobby-code-container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .lobby-code-label {
+        font-size: 16px;
+    }
+
+    .lobby-code-text {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .lobby-code-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .join-private-content {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .join-private-content h2 {
+        font-size: 24px;
+    }
+
+    .join-private-content input {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
 }
 
 @media (min-width: 1440px) and (max-width: 2559px) {
@@ -304,6 +350,57 @@
 
     .br-standing-details {
         font-size: 20px;
+    }
+
+    .br-join-buttons {
+        gap: 20px;
+    }
+
+    .br-btn {
+        padding: 18px 36px;
+        font-size: 24px;
+        border-radius: 18px;
+        border-width: 3px;
+    }
+
+    .lobby-code-container {
+        padding: 25px;
+        border-radius: 25px;
+        border-width: 3px;
+    }
+
+    .lobby-code-label {
+        font-size: 22px;
+    }
+
+    .lobby-code-text {
+        font-size: 40px;
+        letter-spacing: 5px;
+    }
+
+    .lobby-code-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 14px;
+        border-width: 3px;
+    }
+
+    .join-private-content {
+        padding: 40px;
+        border-radius: 30px;
+        border-width: 3px;
+        max-width: 600px;
+    }
+
+    .join-private-content h2 {
+        font-size: 40px;
+    }
+
+    .join-private-content input {
+        padding: 18px;
+        font-size: 24px;
+        border-radius: 18px;
+        border-width: 3px;
     }
 }
 
@@ -384,6 +481,57 @@
     .br-standing-details {
         font-size: 28px;
     }
+
+    .br-join-buttons {
+        gap: 25px;
+    }
+
+    .br-btn {
+        padding: 24px 48px;
+        font-size: 32px;
+        border-radius: 28px;
+        border-width: 4px;
+    }
+
+    .lobby-code-container {
+        padding: 35px;
+        border-radius: 30px;
+        border-width: 4px;
+    }
+
+    .lobby-code-label {
+        font-size: 28px;
+    }
+
+    .lobby-code-text {
+        font-size: 56px;
+        letter-spacing: 6px;
+    }
+
+    .lobby-code-btn {
+        padding: 12px 24px;
+        font-size: 20px;
+        border-radius: 18px;
+        border-width: 4px;
+    }
+
+    .join-private-content {
+        padding: 50px;
+        border-radius: 35px;
+        border-width: 4px;
+        max-width: 800px;
+    }
+
+    .join-private-content h2 {
+        font-size: 56px;
+    }
+
+    .join-private-content input {
+        padding: 24px;
+        font-size: 32px;
+        border-radius: 24px;
+        border-width: 4px;
+    }
 }
 
 @media (min-width: 3840px) {
@@ -462,5 +610,308 @@
 
     .br-standing-details {
         font-size: 36px;
+    }
+
+    .br-join-buttons {
+        gap: 30px;
+    }
+
+    .br-btn {
+        padding: 30px 60px;
+        font-size: 42px;
+        border-radius: 50px;
+        border-width: 6px;
+    }
+
+    .lobby-code-container {
+        padding: 45px;
+        border-radius: 40px;
+        border-width: 6px;
+    }
+
+    .lobby-code-label {
+        font-size: 36px;
+    }
+
+    .lobby-code-text {
+        font-size: 72px;
+        letter-spacing: 8px;
+    }
+
+    .lobby-code-btn {
+        padding: 16px 32px;
+        font-size: 24px;
+        border-radius: 28px;
+        border-width: 6px;
+    }
+
+    .join-private-content {
+        padding: 60px;
+        border-radius: 50px;
+        border-width: 6px;
+        max-width: 1000px;
+    }
+
+    .join-private-content h2 {
+        font-size: 72px;
+    }
+
+    .join-private-content input {
+        padding: 30px;
+        font-size: 42px;
+        border-radius: 30px;
+        border-width: 6px;
+    }
+}
+
+.br-join-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.br-btn {
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: 900;
+    border-radius: 15px;
+    border: 2px solid #000;
+    box-shadow: -4px 4px 0 black;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s, box-shadow 0.1s;
+    color: white;
+}
+
+.br-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 black;
+}
+
+.br-btn-green {
+    background-color: #00995E;
+}
+
+.br-btn-red {
+    background-color: #FD5A46;
+}
+
+.br-btn-blue {
+    background-color: #4A90E2;
+}
+
+.lobby-code-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 20px;
+    border: 2px solid #000;
+}
+
+.lobby-code-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.lobby-code-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.lobby-code-text {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #000;
+    font-family: monospace;
+}
+
+.lobby-code-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 900;
+    border-radius: 12px;
+    border: 2px solid #000;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: -2px 2px 0 black;
+}
+
+.lobby-code-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.lobby-code-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 black;
+}
+
+.lobby-code-btn.copied {
+    background-color: #00995E;
+    color: white;
+}
+
+.join-private-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.join-private-modal.show {
+    display: flex;
+}
+
+.join-private-content {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    border: 2px solid #000;
+    max-width: 500px;
+    width: 90%;
+}
+
+.join-private-content h2 {
+    margin: 0 0 20px 0;
+    font-size: 32px;
+    color: #000;
+}
+
+.join-private-content input {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 2px solid #000;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    font-family: 'Lilita One', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.join-private-content input::placeholder {
+    text-transform: none;
+    font-family: 'Lilita One', sans-serif;
+    letter-spacing: normal;
+}
+
+.join-private-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .br-join-buttons {
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .br-btn {
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 20px;
+    }
+
+    .lobby-code-container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .lobby-code-label {
+        font-size: 16px;
+    }
+
+    .lobby-code-text {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .lobby-code-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 12px;
+    }
+
+    .join-private-content {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .join-private-content h2 {
+        font-size: 24px;
+    }
+
+    .join-private-content input {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 2559px) {
+    .br-join-buttons {
+        gap: 20px;
+    }
+
+    .br-btn {
+        padding: 18px 36px;
+        font-size: 24px;
+        border-radius: 30px;
+        border-width: 3px;
+    }
+
+    .lobby-code-container {
+        padding: 25px;
+        border-radius: 25px;
+        border-width: 3px;
+    }
+
+    .lobby-code-label {
+        font-size: 22px;
+    }
+
+    .lobby-code-text {
+        font-size: 40px;
+        letter-spacing: 5px;
+    }
+
+    .lobby-code-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 18px;
+        border-width: 3px;
+    }
+
+    .join-private-content {
+        padding: 40px;
+        border-radius: 30px;
+        border-width: 3px;
+        max-width: 600px;
+    }
+
+    .join-private-content h2 {
+        font-size: 40px;
+    }
+
+    .join-private-content input {
+        padding: 18px;
+        font-size: 24px;
+        border-radius: 18px;
+        border-width: 3px;
     }
 }

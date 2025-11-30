@@ -1,6 +1,7 @@
 import BattleRoyaleService from "../WebService/BattleRoyaleService.ts";
 import CreateCarousel from "../view/CreateCarousel.ts";
 import CreateMap from "../view/CreateMap.ts";
+import AudioManager from "../utils/AudioManager.ts";
 
 export default class BattleRoyaleGame {
     private service: BattleRoyaleService;
@@ -15,6 +16,8 @@ export default class BattleRoyaleGame {
     private timerInterval: number | null = null;
     private playerId: string = "";
     private isEliminated: boolean = false;
+    private lobbyCode: string | null = null;
+    private codeMasked: boolean = true;
 
     constructor() {
         this.service = BattleRoyaleService.getInstance();
@@ -35,10 +38,14 @@ export default class BattleRoyaleGame {
         this.service.on("br_joined", (data: any) => {
             console.log("Joined BR with ID:", data.id);
             this.playerId = data.id;
+            this.lobbyCode = data.lobbyCode || null;
             this.showLobby();
         });
 
         this.service.on("br_lobby_update", (data: any) => {
+            if (data.lobbyCode) {
+                this.lobbyCode = data.lobbyCode;
+            }
             this.updateLobbyUI(data);
         });
 
@@ -73,6 +80,16 @@ export default class BattleRoyaleGame {
         this.service.joinLobby();
     }
 
+    public async createPrivate() {
+        await this.service.connect();
+        this.service.createPrivateLobby();
+    }
+
+    public async joinWithCode(code: string) {
+        await this.service.connect();
+        this.service.joinLobby(code);
+    }
+
     private showLobby() {
         this.lobbyContainer.style.display = "block";
         this.gameContainer.style.display = "none";
@@ -81,6 +98,47 @@ export default class BattleRoyaleGame {
         const formContainer = document.getElementById("form-container") as HTMLElement;
         if (formContainer) formContainer.style.display = "none";
         this.resultContainer.style.display = "none";
+
+        if (this.lobbyCode) {
+            this.displayLobbyCode();
+        }
+    }
+
+    private displayLobbyCode() {
+        const lobbyContent = document.getElementById("br-lobby-content");
+        if (!lobbyContent) return;
+
+        const existingCode = document.getElementById("lobby-code-container");
+        if (existingCode) existingCode.remove();
+
+        const codeContainer = document.createElement("div");
+        codeContainer.id = "lobby-code-container";
+        codeContainer.className = "lobby-code-container";
+        codeContainer.innerHTML = `
+            <div class="lobby-code-label">Code du lobby privé :</div>
+            <div class="lobby-code-display">
+                <span class="lobby-code-text" id="lobby-code-text">${this.codeMasked ? '****' : this.lobbyCode}</span>
+                <button class="lobby-code-btn" id="toggle-code-btn">${this.codeMasked ? 'Afficher' : 'Masquer'}</button>
+                <button class="lobby-code-btn" id="copy-code-btn">Copier</button>
+            </div>
+        `;
+        lobbyContent.appendChild(codeContainer);
+
+        document.getElementById("toggle-code-btn")?.addEventListener("click", () => {
+            this.codeMasked = !this.codeMasked;
+            this.displayLobbyCode();
+        });
+
+        document.getElementById("copy-code-btn")?.addEventListener("click", () => {
+            navigator.clipboard.writeText(this.lobbyCode || "");
+            const btn = document.getElementById("copy-code-btn");
+            if (btn) {
+                btn.classList.add("copied");
+                setTimeout(() => {
+                    btn.classList.remove("copied");
+                }, 5000);
+            }
+        });
     }
 
     private showGame() {
@@ -91,10 +149,12 @@ export default class BattleRoyaleGame {
         const formContainer = document.getElementById("form-container") as HTMLElement;
         if (formContainer) formContainer.style.display = "flex";
         this.resultContainer.style.display = "none";
+        AudioManager.getInstance().playBackgroundMusic('br-music');
     }
 
     private removeHtml(str: string): string {
-        let result =  str.replace(/<[^>]*>/g, '');
+        console.log(str);
+        let result = str.replace(/<[^>]*>/g, '');
         result = result.replace(/font-family:[^;"]*;?/g, '');
         return result.normalize("NFKD").replace(/[\u{1D400}-\u{1D7FF}]/gu, c => {
             const base = c.normalize("NFKD").replace(/[^\w\s.-]/g, "");
@@ -113,6 +173,10 @@ export default class BattleRoyaleGame {
         const playerCount = document.getElementById("br-player-count");
         if (playerCount) {
             playerCount.textContent = `${data.count} / ${data.maxPlayers} joueurs !`;
+        }
+
+        if (this.lobbyCode) {
+            this.displayLobbyCode();
         }
     }
 
@@ -220,7 +284,7 @@ export default class BattleRoyaleGame {
                     <div class="br-standing-info">
                         <div class="br-standing-name" style="color: white;">${this.removeHtml(res.name)}</div>
                         <div class="br-standing-details" style="color: white;">
-                            Guess: <strong>${res.guess === null ? "-" : this.removeHtml(res.guess)}€</strong> | Distance: ${res.distance === null ? "-" : res.distance}€ | ${status}
+                            Guess: <strong>${res.guess === null ? "-" : res.guess}€</strong> | Distance: ${res.distance === null ? "-" : res.distance}€ | ${status}
                         </div>
                     </div>
                 </li>`;
@@ -266,6 +330,13 @@ export default class BattleRoyaleGame {
         `;
         this.resultContainer.classList.add("show");
 
+        AudioManager.getInstance().stopBackgroundMusic();
+        if (isWinner) {
+            AudioManager.getInstance().playSoundEffect('win');
+        } else {
+            AudioManager.getInstance().playSoundEffect('loose');
+        }
+
         document.getElementById("br-back-lobby")?.addEventListener("click", () => {
             window.location.reload();
         });
@@ -291,6 +362,9 @@ export default class BattleRoyaleGame {
             </div>
         `;
         this.resultContainer.classList.add("show");
+
+        AudioManager.getInstance().stopBackgroundMusic();
+        AudioManager.getInstance().playSoundEffect('loose');
 
         document.getElementById("br-back-lobby")?.addEventListener("click", () => {
             window.location.reload();

@@ -3,7 +3,6 @@ export type RouteHandler = (...args: any[]) => void;
 export default class Router {
     private static instance: Router;
     private routes: Map<RegExp, RouteHandler> = new Map();
-    private currentHash: string = "";
 
     private constructor() {
         window.addEventListener("hashchange", () => this.handleRoute());
@@ -27,10 +26,10 @@ export default class Router {
     }
 
     private handleRoute(): void {
-        this.currentHash = window.location.hash || "#/";
+        const newHash = window.location.hash || "#/";
 
         for (const [regex, handler] of this.routes) {
-            const match = this.currentHash.match(regex);
+            const match = newHash.match(regex);
             if (match) {
                 const params = match.slice(1);
                 (handler as any)(...params);
@@ -38,7 +37,7 @@ export default class Router {
             }
         }
 
-        if (this.currentHash !== "#/") {
+        if (newHash !== "#/") {
             this.navigate("#/");
         } else {
             this.navigate("#game");

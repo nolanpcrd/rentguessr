@@ -1,5 +1,6 @@
 import Game from "../../game/Game.ts";
 import SettingsManager from "../SettingsManager.ts";
+import AudioManager from "../../utils/AudioManager.ts";
 
 export default class GameView {
   private container: HTMLElement;
@@ -11,6 +12,7 @@ export default class GameView {
   }
 
   public render(parent: HTMLElement, playlistId: string = ""): void {
+    AudioManager.getInstance().playBackgroundMusic("music");
     this.container.innerHTML = `
             <div class="game-header">
               <div class="score-badge" id="score-display">0 Pts</div>
@@ -77,5 +79,9 @@ export default class GameView {
     }
 
     this.game.start();
+  }
+
+  public destroy(): void {
+    AudioManager.getInstance().stopBackgroundMusic();
   }
 }
